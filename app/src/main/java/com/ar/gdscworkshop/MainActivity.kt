@@ -24,162 +24,155 @@ import kotlin.collections.ArrayList
 class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
     DatePickerDialog.OnDateSetListener {
 
-    lateinit var preferences: SharedPreferences
-    // Defining Variables
-    //TODO("Teach initialisation and declaration of variables, use of classes")
-    var day = 0
-    var month : Int = 0
-    var year : Int = 0
-    var currentDay = 0
-    var currentHour = 0
-    var currentMinute = 0
-    var currentMonth = 0
-    var currentYear = 0
-    lateinit var adapter: ReminderAdapter
-    val CHANNEL_ID = "gdscNotif"
-    val notificationID = 314
+    //lateinit var preferences: SharedPreferences
 
-    //TODO("Teach declaration of components")
-    private lateinit var reminderName : TextInputEditText
-    private lateinit var reminderNameField : TextInputLayout
-    private lateinit var description : EditText
-    private lateinit var dateAndTime : TextView
-    private lateinit var addReminder : Button
+    //TODO
+    // ("Declare variables: day, month, year, currentDay, currentHour, currentMinute, currentMonth, currentYear.
+    // Initialise all the variables to 0")
+
+    // lateinit var adapter: ReminderAdapter
+    // val CHANNEL_ID = "gdscNotif"
+    // val notificationID = 314
+
+    //TODO
+    // ("Declare variables for components, reminderName, reminderNameField, description, dateAndTime, addReminder
+    // ,recyclerView using private lateinit var")
     lateinit var recyclerView : RecyclerView
 
+
     // Components for Recycler View
-    // TODO("Creation of Arrays")
-    var reminderList = ArrayList<String>()
-    var descriptionList = ArrayList<String>()
-    var dateAndTimeList = ArrayList<String>()
+    // TODO
+    //  ("Declare ArrayLists of String datatype, having the names reminderList, descriptionList, dateAndTimeList")
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        createNotificationChannel()
+        //createNotificationChannel()
 
-        // Initialising Components
-        //TODO("Teach initialisation of different components")
-        reminderName = findViewById(R.id.reminderName)
-        reminderNameField = findViewById(R.id.reminderNameField)
-        description = findViewById(R.id.description)
-        dateAndTime = findViewById(R.id.dateAndTime)
-        addReminder = findViewById(R.id.addReminder)
-        recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+        //TODO("Initialise the components using findViewById")
+
+        //recyclerView = findViewById(R.id.recyclerView)
+        //recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
 
         // Accessing Date and Time
-        //TODO("Only implement the onClickListener during the workshop")
-        dateAndTime.setOnClickListener {
-            chooseDeadline()
-        }
-
-        // Don't change this
-        preferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
-
-        if(preferences.getInt("reminderListSize", 0) != 0){
-            reminderList = loadReminders("reminderList")
-            descriptionList = loadReminders("descriptionList")
-            dateAndTimeList = loadReminders("dateAndTimeList")
-        }
-        adapter = ReminderAdapter(reminderList, descriptionList, dateAndTimeList, this@MainActivity)
-        recyclerView.adapter = adapter
+        //TODO("Implement the onClickListener on dateAndTime TextView and enclose chooseDeadLine function in it")
+        // chooseDeadline()
 
 
+        // TODO
+        //  ("Only uncomment this section. DO NOT modify this section")
+        //preferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
+        //if(preferences.getInt("reminderListSize", 0) != 0){
+        //    reminderList = loadReminders("reminderList")
+        //    descriptionList = loadReminders("descriptionList")
+        //    dateAndTimeList = loadReminders("dateAndTimeList")
+        //}
+        //adapter = ReminderAdapter(reminderList, descriptionList, dateAndTimeList, this@MainActivity)
+        //recyclerView.adapter = adapter
+        // TODO("Section ends")
 
-        // TODO("When Add Reminder is Clicked")
-        addReminder.setOnClickListener {
-            //TODO("Teach function call here")
-            if(checkFields()){
-                sendNotification("${reminderName.text.toString()}", "${description.text}")
-                //TODO("Add elements to the array")
-                reminderList.add(reminderName.text.toString())
-                descriptionList.add(description.text.toString())
-                dateAndTimeList.add(dateAndTime.text.toString())
-                saveReminders(reminderList, "reminderList")
-                saveReminders(descriptionList, "descriptionList")
-                saveReminders(dateAndTimeList, "dateAndTimeList")
-            }
-            dateAndTime.text = ""
-            adapter.notifyDataSetChanged()
-        }
+
+
+        // TODO("Implement onClickListener to addReminder and enclose checkFields() function")
+
+            //if(checkFields()){
+                //sendNotification("${reminderName.text.toString()}", "${description.text}")
+                //TODO("Add elements to the Array dateAndTimeList using reminder and description as reference")
+                //reminderList.add(reminderName.text.toString())
+                //descriptionList.add(description.text.toString())
+
+                //TODO("Only uncomment this section, DO NOT modify it")
+                //saveReminders(reminderList, "reminderList")
+                //saveReminders(descriptionList, "descriptionList")
+                //saveReminders(dateAndTimeList, "dateAndTimeList")
+            //}
+
+            //TODO("Only uncomment this section, DO NOT modify it")
+            //dateAndTime.text = ""
+            //adapter.notifyDataSetChanged()
+
+        // TODO("End of enclosing in addOnClickListener")
+
     }
 
-    //TODO("Teach function declaration here. Remember to create after onCreate function")
-    private fun checkFields() : Boolean{
-        if(reminderName.length() == 0){
-            Toast.makeText(this, "Mandatory Field", Toast.LENGTH_SHORT).show()
-            reminderNameField.boxStrokeColor = Color.parseColor("#b00020")
-            reminderName.requestFocus()
-            return false
-        }
-        return true
-    }
+    //TODO("Enclose the following segment in a function checkFields(), return a Boolean
+    //    Declare the function here")
+
+//        if(reminderName.length() == 0){
+//            Toast.makeText(this, "Mandatory Field", Toast.LENGTH_SHORT).show()
+//            reminderNameField.boxStrokeColor = Color.parseColor("#b00020")
+//            reminderName.requestFocus()
+//            return false
+//        }
+//        return true
 
 
-    // TODO("Do not change the following functions")
-    private fun chooseDeadline() {
-        val calendar: Calendar = Calendar.getInstance()
-        day = calendar.get(Calendar.DAY_OF_MONTH)
-        month = calendar.get(Calendar.MONTH)
-        year = calendar.get(Calendar.YEAR)
-        val datePickerDialog = DatePickerDialog(this@MainActivity, this@MainActivity, year, month, day)
-        datePickerDialog.show()
-    }
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        currentDay = day
-        currentYear = year
-        currentMonth = month
-        val calendar: Calendar = Calendar.getInstance()
-        currentHour = calendar.get(Calendar.HOUR)
-        currentMinute = calendar.get(Calendar.MINUTE)
-        val timePickerDialog = TimePickerDialog(this@MainActivity, this@MainActivity, currentHour, currentMinute, is24HourFormat(this))
-        timePickerDialog.show()
-    }
-    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        currentHour = hourOfDay
-        currentMinute = minute
-        dateAndTime.text = "${currentDay}/${currentMonth+1}/${currentYear}  ${currentHour}:${currentMinute}"
-    }
-    private fun createNotificationChannel(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val name = "Notification Title"
-            val descriptionText = "Notification Description"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance)
-                .apply { descriptionText }
-            val notificationManager : NotificationManager = getSystemService(Context. NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
-    private fun sendNotification(title : String, desc : String){
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle(title)
-            .setContentText(desc)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
-        with(NotificationManagerCompat.from(this)){
-            notify(notificationID, builder.build())
-        }
-    }
-    fun saveReminders(array: ArrayList<String>, arrayName: String): Boolean {
-        preferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
-        var editor = preferences.edit()
-        editor.putInt(arrayName + "Size", array.size)
-        for (i in array.indices)
-            editor.putString(arrayName + "_" + i, array[i])
-        editor.commit()
-        return editor.commit()
-    }
-
-    fun loadReminders(arrayName: String): ArrayList<String> {
-        val size = preferences.getInt(arrayName + "Size", 0)
-        val array = ArrayList<String>(size)
-        for (i in 0 until size)
-            array.add(preferences.getString(arrayName + "_" + i, null).toString())
-        return array
-    }
+    // TODO("DO NOT modify the following functions, UNCOMMENT this section")
+    // TODO("Builder Functions, essential for your project to run")
+//    private fun chooseDeadline() {
+//        val calendar: Calendar = Calendar.getInstance()
+//        day = calendar.get(Calendar.DAY_OF_MONTH)
+//        month = calendar.get(Calendar.MONTH)
+//        year = calendar.get(Calendar.YEAR)
+//        val datePickerDialog = DatePickerDialog(this@MainActivity, this@MainActivity, year, month, day)
+//        datePickerDialog.show()
+//    }
+//    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+//        currentDay = day
+//        currentYear = year
+//        currentMonth = month
+//        val calendar: Calendar = Calendar.getInstance()
+//        currentHour = calendar.get(Calendar.HOUR)
+//        currentMinute = calendar.get(Calendar.MINUTE)
+//        val timePickerDialog = TimePickerDialog(this@MainActivity, this@MainActivity, currentHour, currentMinute, is24HourFormat(this))
+//        timePickerDialog.show()
+//    }
+//    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+//        currentHour = hourOfDay
+//        currentMinute = minute
+//        dateAndTime.text = "${currentDay}/${currentMonth+1}/${currentYear}  ${currentHour}:${currentMinute}"
+//    }
+//    private fun createNotificationChannel(){
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+//            val name = "Notification Title"
+//            val descriptionText = "Notification Description"
+//            val importance = NotificationManager.IMPORTANCE_DEFAULT
+//            val channel = NotificationChannel(CHANNEL_ID, name, importance)
+//                .apply { descriptionText }
+//            val notificationManager : NotificationManager = getSystemService(Context. NOTIFICATION_SERVICE) as NotificationManager
+//            notificationManager.createNotificationChannel(channel)
+//        }
+//    }
+//    private fun sendNotification(title : String, desc : String){
+//        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+//            .setSmallIcon(R.drawable.ic_launcher_foreground)
+//            .setContentTitle(title)
+//            .setContentText(desc)
+//            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//
+//        with(NotificationManagerCompat.from(this)){
+//            notify(notificationID, builder.build())
+//        }
+//    }
+//    fun saveReminders(array: ArrayList<String>, arrayName: String): Boolean {
+//        preferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
+//        var editor = preferences.edit()
+//        editor.putInt(arrayName + "Size", array.size)
+//        for (i in array.indices)
+//            editor.putString(arrayName + "_" + i, array[i])
+//        editor.commit()
+//        return editor.commit()
+//    }
+//
+//    fun loadReminders(arrayName: String): ArrayList<String> {
+//        val size = preferences.getInt(arrayName + "Size", 0)
+//        val array = ArrayList<String>(size)
+//        for (i in 0 until size)
+//            array.add(preferences.getString(arrayName + "_" + i, null).toString())
+//        return array
+//    }
 }

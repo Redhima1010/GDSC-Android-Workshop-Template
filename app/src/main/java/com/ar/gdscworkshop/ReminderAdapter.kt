@@ -1,5 +1,7 @@
 package com.ar.gdscworkshop
 
+// TODO("DO NOT MODIFY THIS FILE.
+//  THE FOLLOWING FILE IMPLEMENTS THE LOGIC FOR ADDING REMINDERS")
 
 import android.content.Context
 import android.content.SharedPreferences
