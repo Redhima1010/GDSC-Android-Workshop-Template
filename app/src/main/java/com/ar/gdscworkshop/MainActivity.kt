@@ -56,6 +56,9 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
     // Components for Recycler View
     // TODO
     //  ("Declare ArrayLists of String datatype, having the names reminderList, descriptionList, dateAndTimeList")
+    var reminderList=ArrayList<String>()
+    var descriptionList=ArrayList<String>()
+    var dateAndTimeList=ArrayList<String>()
 
 
 
@@ -103,6 +106,7 @@ class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
             sendNotification("${reminderName.text.toString()}", "${description.text}")
             reminderList.add(reminderName.text.toString())
             descriptionList.add(description.text.toString())
+                dateAndTimeList.add(dateAndTime.text.toString())
 
             saveReminders(reminderList, "reminderList")
             saveReminders(descriptionList, "descriptionList")
