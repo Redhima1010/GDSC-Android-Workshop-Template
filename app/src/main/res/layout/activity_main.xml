@@ -7,75 +7,16 @@
     android:background="#FFFFFF"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/mainTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        android:text="Notifications Reminder"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--    TODO("Implement the following UIs TextView, TextInputLayout, ScrollView, EditText, Button")-->
+    <!--    TODO("TextView to show the App Name, with ID as mainTitle")-->
+    <!--    TODO("TextInputLayout with ID as reminderNameField")-->
+    <!--    TODO("Embed TextInputEditText with ID as reminderName in previous tag")   -->
+    <!--    TODO("Implement Scroll View")-->
+    <!--    TODO("Implement Linear View and embed within previous tag")-->
+    <!--    TODO("Implement Recycler View with ID as recyclerView and embed within previous tag")-->
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reminderNameField"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColorHint="@color/black">
+    <!--    TODO("Implement Edit Text with ID as description")-->
+    <!--    TODO("Implement Text View with ID as dateAndTime")-->
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/reminderName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="hint" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="409dp"
-        android:layout_height="623dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reminderNameField" />
-
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="14dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainTitle"
-        tools:ignore="TouchTargetSizeCheck"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/dateAndTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="47dp"
-        android:text="Date and Time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/black"/>
-
-    <Button
-        android:id="@+id/addReminder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="39dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--    TODO("Implement Button with ID as addReminder")-->
 </androidx.constraintlayout.widget.ConstraintLayout>
